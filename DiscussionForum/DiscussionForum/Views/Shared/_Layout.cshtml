@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DiscussionForum</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DiscussionForum.styles.css" asp-append-version="true" />
+    <script type="text/javascript" src="~/js/site.js"></script>
+</head>
+<body>
+    <header>
+
+        <div onclick="showTopicsPopup()" class="white-lines-container">
+            <div class="white-line"></div>
+            <div class="white-line"></div>
+            <div class="white-line"></div>
+        </div>
+
+        <a class="logo-link" asp-area="" asp-controller="Question" asp-action="Index">
+            <img class="logo-img" alt="discussion forum logo" src="~/img/logo.png" />
+        </a> 
+
+        <div onclick="showUserPopup()" class="person-image-container">
+            <div class="person-head"></div>
+            <div class="person-body"></div>
+        </div>
+
+    </header>
+
+    <div id="main-container">
+
+        <div id="topics-popup"></div>
+
+        <div id="topics-sidebar"></div>
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <div id="user-sidebar"></div>
+
+        <div id="user-popup"></div>
+
+        <div onclick="hideAllPopups()" id="blank-canvas"></div>
+
+    </div>
+   
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

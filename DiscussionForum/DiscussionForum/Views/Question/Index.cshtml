@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Question>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@foreach (var item in Model)
+{
+    <div class="question-container">
+        <h2 class="question-title">@item.Title</h2>
+        @if (item.Image != null)
+        {
+            <img class="question-img" src="@Url.Content(item.Image)" />
+        }
+        <p class="question-description">@item.Description</p>
+    </div>
+}

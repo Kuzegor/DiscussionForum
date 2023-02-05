@@ -1,0 +1,31 @@
+﻿namespace DiscussionForum.Data.Enums
+{
+    public enum Topic
+    {
+        Design,
+        Finance,
+        Science,
+        Gaming,
+        Sports,
+        Technology,
+        Programming,
+        Crypto,
+        Movies,
+        Music,
+        Art,
+        Fashion,
+        Memes,
+        Photography,
+        Nature,
+        Animals,
+        Lifehacks,
+        Tourism,
+        Funny,
+        News,
+        Food,
+        Extreme,
+        Books,
+        Fiction,
+        Space
+    }
+}
