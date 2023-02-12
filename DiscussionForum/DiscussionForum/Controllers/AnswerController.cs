@@ -1,4 +1,6 @@
 ﻿using DiscussionForum.Data;
+using DiscussionForum.Data.Interfaces;
+using DiscussionForum.Data.Repository;
 using DiscussionForum.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,15 +8,25 @@ namespace DiscussionForum.Controllers
 {
     public class AnswerController : Controller
     {
-        private readonly AppDbContext _context;
-        public AnswerController(AppDbContext context)
+        private readonly IAnswerRepository _answerRepository;
+        public AnswerController(IAnswerRepository answerRepository)
         {
-            _context = context;
+            _answerRepository = answerRepository;
         }
-        public IActionResult Index()
+
+        public IActionResult Create()
         {
-            List<Answer> answers = _context.Answers.ToList();
-            return View(answers);
+            return PartialView("_Create");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(Answer answer)
+        {
+            if (ModelState.IsValid == false)
+            {
+                return RedirectToAction("Detail","Question", new { id = answer.QuestionId });
+            }
+            _answerRepository.Add(answer);
+            return RedirectToAction("Detail", "Question", new { id = answer.QuestionId });
         }
     }
 }

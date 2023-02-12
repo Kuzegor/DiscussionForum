@@ -26,6 +26,7 @@
         Extreme,
         Books,
         Fiction,
-        Space
+        Space,
+        Other
     }
 }

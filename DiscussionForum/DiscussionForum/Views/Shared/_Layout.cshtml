@@ -6,9 +6,13 @@
     <title>DiscussionForum</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DiscussionForum.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-grid.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-reboot.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-utilities.css" />
     <script type="text/javascript" src="~/js/site.js"></script>
 </head>
-<body>
+<body id="body">
     <header>
 
         <div onclick="showTopicsPopup()" class="white-lines-container">
@@ -34,15 +38,81 @@
 
         <div id="topics-sidebar"></div>
 
-        <div class="container">
+        <div class="content-container">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
         </div>
 
-        <div id="user-sidebar"></div>
+        <div id="user-sidebar">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" aria-current="page">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                        Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Question" asp-action="Create" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                        Post Question
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-        <div id="user-popup"></div>
+        <div id="user-popup">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" aria-current="page">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                        Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Question" asp-action="Create" class="nav-link link-dark">
+                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                        Post Question
+                    </a>
+                </li>
+            </ul>
+        </div>
 
         <div onclick="hideAllPopups()" id="blank-canvas"></div>
 

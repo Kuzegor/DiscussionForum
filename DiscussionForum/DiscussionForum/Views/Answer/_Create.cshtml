@@ -1,0 +1,16 @@
+﻿@model Answer
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form class="fixed-form" method="post" asp-action="Create">
+    <div class="answer-input-container">
+        <input placeholder="Type an answer..." required class="answer-input" asp-for="Description"/>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <input type="hidden" value="@TempData["currentQuestionId"]" asp-for="QuestionId" />
+    <button type="submit" class="white button answer-button">Post</button>
+</form>

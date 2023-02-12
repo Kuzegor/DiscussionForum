@@ -14,13 +14,144 @@ html {
   }
 }
 
-body {
+/****************** question start *******************/
+.question-container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px 0px lightgray;
+    padding: 15px;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.question-img {
+    max-height: 50vh;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    align-self: center;
+    max-width: 100%;
+}
+
+.question-title, .question-description{
+    margin: 0;
+    padding: 0;
+}
+
+.question-title-link{
+    text-decoration: none;
+    color: black;
+}
+/****************** question end *******************/
+
+/****************** form start *******************/
+.form {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px 0px lightgray;
+    padding: 15px;
+    text-align: right;
+}
+
+.input-block {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.input-block:first-of-type{
+    margin-top: 65px;
+}
+
+.form h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 21px;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    padding: 15px 0;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+@media (min-width: 768px) {
+    .form h1 {
+        font-size: 24px;
+    }
+}
+
+.form .button{
+    text-align: center;
+}
+
+.form-label:after{
+    content: ": ";
+}
+
+.button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 500;
+    min-width: 80px;
+}
+.blue {
+    background-color: #6521ff;
+    color: white;
+}
+.white{
+    background-color: white;
+    color: #6521ff;
+}
+/****************** form end *******************/
+
+/****************** answer bottom-fixed form start *******************/
+.fixed-form {
+    position: fixed;
+    bottom: 0px;
+    background-color: #6521ff;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0px 5px 15px 0px lightgray;
+    width: 100%;
+    padding: 10px;
+    height: 62px;
+    display: flex;
+    flex-direction: row;
+}
+.answer-input {
+    border-radius: 5px;
+    width: 100%;
+    height: 42px;
+    border: 1px solid gray;
+    padding: 10px
+}
+@media (min-width: 768px) {
+    .answer-input {
+        height: 45px;
+    }
+    .fixed-form{
+        height: 65px;
+    }
+}
+.answer-input-container{
+    width: 100%;
+    margin-right: 10px;
+}
+.answer-button{
+    height: min-content;
+}
+/****************** answer bottom-fixed form end *******************/
+
+/****************** master page start *****************/
+#body {
     display: flex;
     flex-direction: column;
     padding: 0;
     margin: 0;
     height: 100%;
-    background-color: #f7f7f7;
+    background-color: #f7f7f7 !important;
 }
 
 header {
@@ -59,8 +190,10 @@ header {
     display: initial;
 }
 
-.container {
+.content-container, .fixed-form {
     width: calc(100% - 550px - 20%);
+}
+.content-container{   
     left: calc(10% + 275px);
     top: 75px;
     min-height: 100vh;
@@ -72,33 +205,8 @@ header {
     margin: 0 0 0 calc(10% - 5px);
 }
 
-.logo-img{
+.logo-img {
     height: 100%;
-    padding: 0;
-}
-
-.question-container {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px 0px lightgray;
-    padding: 15px;
-    margin-bottom: 25px;
-    gap: 15px;
-}
-
-.question-img {
-    max-height: 50vh;
-    border-radius: 10px;
-    padding: 0;
-    margin: 0;
-    align-self: center;
-    max-width: 100%;
-}
-
-.question-title, .question-description{
-    margin: 0;
     padding: 0;
 }
 
@@ -184,8 +292,10 @@ header {
         visibility: visible;
     }
 
-    .container {
+    .content-container {
         left: 300px;
+    }
+    .content-container, .fixed-form {
         width: calc(100% - 600px);
     }
 
@@ -198,8 +308,11 @@ header {
     #user-sidebar, #topics-sidebar {
         display: none;
     }
-
-    .container {
+    .fixed-form {
+        width: calc(100% - 50px);
+        left: 25px;
+    }
+    .content-container {
         width: calc(100% - 50px);
         left: 25px;
     }
@@ -235,4 +348,6 @@ header {
         padding: 0;
     }
 }
+/****************** master page end *****************/
+
 

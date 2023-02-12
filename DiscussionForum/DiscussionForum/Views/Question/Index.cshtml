@@ -15,5 +15,6 @@
             <img class="question-img" src="@Url.Content(item.Image)" />
         }
         <p class="question-description">@item.Description</p>
-    </div>
+        <a asp-controller="Question" asp-action="Detail" class="blue button" asp-route-id="@item.Id">View</a>
+    </div> 
 }

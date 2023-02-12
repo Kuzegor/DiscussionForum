@@ -7,18 +7,30 @@ function showTopicsPopup() {
     let userPopup = document.getElementById("user-popup");
     let topicsPopup = document.getElementById("topics-popup");
     let blankCanvas = document.getElementById("blank-canvas");
-    topicsPopup.style.visibility = "visible";
-    userPopup.style.visibility = "hidden";
-    blankCanvas.style.visibility = "visible";
+    if (topicsPopup.style.visibility == "visible") {
+        topicsPopup.style.visibility = "hidden";
+        blankCanvas.style.visibility = "hidden";
+    }
+    else {
+        topicsPopup.style.visibility = "visible";
+        userPopup.style.visibility = "hidden";
+        blankCanvas.style.visibility = "visible";
+    }
 }
 
 function showUserPopup() {
     let userPopup = document.getElementById("user-popup");
     let topicsPopup = document.getElementById("topics-popup");
     let blankCanvas = document.getElementById("blank-canvas");
-    userPopup.style.visibility = "visible";
-    topicsPopup.style.visibility = "hidden";
-    blankCanvas.style.visibility = "visible";
+    if (userPopup.style.visibility == "visible") {
+        userPopup.style.visibility = "hidden";
+        blankCanvas.style.visibility = "hidden";
+    }
+    else {
+        userPopup.style.visibility = "visible";
+        topicsPopup.style.visibility = "hidden";
+        blankCanvas.style.visibility = "visible";
+    }
 }
 
 function hideAllPopups() {

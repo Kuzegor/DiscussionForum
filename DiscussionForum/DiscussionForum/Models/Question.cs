@@ -11,6 +11,8 @@ namespace DiscussionForum.Models
         public string? Title { get; set; }
         public string? Description { get; set; }
         public string? Image { get; set; }
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
         public Topic Topic { get; set; }
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }
