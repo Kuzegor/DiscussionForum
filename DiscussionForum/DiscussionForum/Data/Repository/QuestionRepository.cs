@@ -23,19 +23,19 @@ namespace DiscussionForum.Data.Repository
             return Save();
         }
 
-        public async Task<IEnumerable<Question>> GetAll()
+        public async Task<IEnumerable<Question>> GetAllAsync()
         {
             return await _context.Questions.ToListAsync();
         }
 
-        public async Task<Question> GetById(int id)
+        public async Task<Question> GetByIdAsync(int id)
         {
             return await _context.Questions.Include(x => x.Answers).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<Question>> GetByUserId(string appUserId)
+        public async Task<IEnumerable<Question>> GetByUserIdAsync(string appUserId)
         {
-            return await _context.Questions.Where(x => x.AppUserId == appUserId).ToListAsync(); 
+            return await _context.Questions.Where(x => x.AppUserId == appUserId).ToListAsync();
         }
 
         public bool Save()

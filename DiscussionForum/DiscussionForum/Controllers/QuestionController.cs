@@ -21,21 +21,21 @@ namespace DiscussionForum.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Question> questions = await _questionRepository.GetAll();
+            IEnumerable<Question> questions = await _questionRepository.GetAllAsync();
             return View(questions);
         }
 
         public async Task<IActionResult> UserQuestions()
         {
             //TODO: MAKE UserQuestions ACTION ACTUALLY RETURN QUESTIONS BY USER
-            IEnumerable<Question> questions = await _questionRepository.GetAll();
+            IEnumerable<Question> questions = await _questionRepository.GetAllAsync();
             return View(questions);
         }
 
         public async Task<IActionResult> Detail(int id)
         {
             TempData["currentQuestionId"] = id;
-            Question question = await _questionRepository.GetById(id);
+            Question question = await _questionRepository.GetByIdAsync(id);
             return View(question);
         }
 
@@ -77,7 +77,7 @@ namespace DiscussionForum.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             //TODO: IMAGE LOADIING TO THE EDIT PAGE
-            Question question = await _questionRepository.GetById(id);
+            Question question = await _questionRepository.GetByIdAsync(id);
             TempData["previousImagePath"] = question.Image;
             return View(question);
         }

@@ -24,7 +24,7 @@ namespace DiscussionForum.Data.Repository
             return Save();
         }
 
-        public async Task<IEnumerable<Answer>> GetByUserId(string appUserId)
+        public async Task<IEnumerable<Answer>> GetByUserIdAsync(string appUserId)
         {
             return await _context.Answers.Where(x => x.AppUserId == appUserId).ToListAsync();
         }
