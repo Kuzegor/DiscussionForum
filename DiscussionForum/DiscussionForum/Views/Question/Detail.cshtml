@@ -11,7 +11,10 @@
     {
         <img class="question-img" src="@Url.Content(Model.Image)" />
     }
-    <p class="question-description">@Model.Description</p>
+    @if (Model.Description != null)
+    {
+        <p class="question-description">@Model.Description</p>
+    }
 </div>
 
 @if (Model.Answers != null)

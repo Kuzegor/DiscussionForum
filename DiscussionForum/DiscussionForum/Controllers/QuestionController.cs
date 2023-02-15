@@ -1,6 +1,7 @@
 ﻿using DiscussionForum.Data;
 using DiscussionForum.Data.Interfaces;
 using DiscussionForum.Data.Repository;
+using DiscussionForum.Helpers;
 using DiscussionForum.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,12 +24,21 @@ namespace DiscussionForum.Controllers
             IEnumerable<Question> questions = await _questionRepository.GetAll();
             return View(questions);
         }
+
+        public async Task<IActionResult> UserQuestions()
+        {
+            //TODO: MAKE UserQuestions ACTION ACTUALLY RETURN QUESTIONS BY USER
+            IEnumerable<Question> questions = await _questionRepository.GetAll();
+            return View(questions);
+        }
+
         public async Task<IActionResult> Detail(int id)
         {
             TempData["currentQuestionId"] = id;
             Question question = await _questionRepository.GetById(id);
             return View(question);
         }
+
         public IActionResult Create()
         {
             return View();
@@ -38,31 +48,79 @@ namespace DiscussionForum.Controllers
         {
             if (question.ImageFile != null)
             {
-                string fileNameLower = question.ImageFile.FileName.ToLower();
-                string[] extensions = { "jpg", "png", "jfif", "jpeg", "gif"};
-                bool fileIsValid = false;
-                for (int i = 0; i < extensions.Length; i++)
+                if (ImageHelper.ImageIsValid(question.ImageFile))
                 {
-                    if (fileNameLower.EndsWith(extensions[i]))
-                    {
-                        fileIsValid = true;
-                        break;
-                    }
-                }
-                if (fileIsValid)
-                {
+                    //saving the uploaded image
                     string folder = "img/uploaded/" + Guid.NewGuid().ToString() + question.ImageFile.FileName;
                     string serverPath = Path.Combine(_webHostEnvironment.WebRootPath, folder);
-                    await question.ImageFile.CopyToAsync(new FileStream(serverPath, FileMode.Create));
+                    using (FileStream fileStream = new FileStream(serverPath, FileMode.Create))
+                    {
+                        await question.ImageFile.CopyToAsync(fileStream);
+                    }
                     question.Image = "~/" + folder;
-                }              
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Image is not valid");
+                    return View(question);
+                }
             }
+
             if (ModelState.IsValid == false)
             {
                 return View(question);
             }
             _questionRepository.Add(question);
             return RedirectToAction("Detail", new {id = question.Id});
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            //TODO: IMAGE LOADIING TO THE EDIT PAGE
+            Question question = await _questionRepository.GetById(id);
+            TempData["previousImagePath"] = question.Image;
+            return View(question);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Question question)
+        {
+            if (question.ImageFile != null)
+            {
+                if (ImageHelper.ImageIsValid(question.ImageFile))
+                {
+                    //saving the new image
+                    string folder = "img/uploaded/" + Guid.NewGuid().ToString() + question.ImageFile.FileName;
+                    string serverPath = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                    using (FileStream fileStream = new FileStream(serverPath, FileMode.Create))
+                    {
+                        await question.ImageFile.CopyToAsync(fileStream);
+                    }
+                    question.Image = "~/" + folder;
+
+                    //removing the old image
+                    if (TempData["previousImagePath"] != null)
+                    {
+                        string oldImageFolder = TempData["previousImagePath"].ToString().Remove(0, 2);
+                        System.IO.File.Delete(Path.Combine(_webHostEnvironment.WebRootPath, oldImageFolder));
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Image is not valid");
+                    return View(question);
+                }
+            }
+            else
+            {
+                question.Image = TempData["previousImagePath"]?.ToString();
+            }
+
+            if (ModelState.IsValid == false)
+            {
+                return View(question);
+            }
+            _questionRepository.Update(question);
+            return RedirectToAction("Detail", new { id = question.Id });
         }
     }
 }
