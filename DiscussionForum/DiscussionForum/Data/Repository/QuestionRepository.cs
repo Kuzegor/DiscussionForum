@@ -33,11 +33,6 @@ namespace DiscussionForum.Data.Repository
             return await _context.Questions.Include(x => x.Answers).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<Question>> GetByUserIdAsync(string appUserId)
-        {
-            return await _context.Questions.Where(x => x.AppUserId == appUserId).ToListAsync();
-        }
-
         public bool Save()
         {
             int savedChanges = _context.SaveChanges();

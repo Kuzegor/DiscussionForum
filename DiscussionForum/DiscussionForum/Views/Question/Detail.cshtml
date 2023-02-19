@@ -1,9 +1,4 @@
 ﻿@model Question
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
 
 <div class="question-container">
     <h2 class="question-title">@Model.Title</h2>
@@ -21,13 +16,19 @@
 {
     foreach (var item in Model.Answers)
     {
-        <div>
+        <div class="answer-container">
             <p>@item.Description</p>
         </div>
     }
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="answer-bottom-space"></div>
+    }    
 }
-
-<div id="partial-block"></div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div id="partial-block"></div>
+}
 
 @section Scripts{
     <script>

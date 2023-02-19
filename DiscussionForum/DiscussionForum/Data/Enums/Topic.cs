@@ -27,6 +27,7 @@
         Books,
         Fiction,
         Space,
+        DIY,
         Other
     }
 }

@@ -6,7 +6,6 @@ namespace DiscussionForum.Data.Interfaces
     {
         Task<IEnumerable<Question>> GetAllAsync();
         Task<Question> GetByIdAsync(int id);
-        Task<IEnumerable<Question>> GetByUserIdAsync(string appUserId);
         bool Add(Question question);
         bool Update(Question question);
         bool Delete(Question question);

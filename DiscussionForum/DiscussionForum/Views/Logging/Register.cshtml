@@ -1,0 +1,44 @@
+﻿@using DiscussionForum.ViewModels;
+@model RegisterViewModel
+
+
+<form class="form" method="post" asp-action="Register">
+    <h1 class="blue">Create an account</h1>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="input-block">
+        <label class="form-label" asp-for="UserName"></label>
+        <input class="form-control" asp-for="UserName" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="input-block">
+        <label class="form-label" asp-for="Email"></label>
+        <input class="form-control" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="input-block">
+        <label class="form-label" asp-for="Password"></label>
+        <input class="form-control" asp-for="Password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="input-block">
+        <label class="form-label" asp-for="ConfirmPassword"></label>
+        <input class="form-control" asp-for="ConfirmPassword" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    @if (TempData["Error"] != null)
+    {
+        <div style="text-align:center" class="alert-danger alert">
+            <span>@TempData["Error"]</span>
+        </div>
+    }
+    <div style="text-align:center" class="alert-danger alert">
+        <b>Please, note that:</b>
+        <span>
+            Password must be at least 6 characters.<br />
+            Password must have at least one non-alphanumeric character, one digit and one uppercase.<br />            
+            Name and email can contain alphanumeric and the following characters -._@@+<br />
+            Name and email must not contain spaces.
+        </span>
+    </div>
+    <button type="submit" class="blue button">Sign Up</button>
+</form>

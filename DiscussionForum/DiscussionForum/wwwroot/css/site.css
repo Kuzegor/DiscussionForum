@@ -22,8 +22,19 @@ html {
     border-radius: 10px;
     box-shadow: 0px 5px 15px 0px lightgray;
     padding: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     gap: 15px;
+}
+
+.answer-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px 0px lightgray;
+    padding: 15px;
+    margin-top: 10px;
+}
+.answer-bottom-space{
+    height: 60px;
 }
 
 .question-img {
@@ -44,10 +55,39 @@ html {
     text-decoration: none;
     color: black;
 }
+
+.buttons-row, .buttons-row-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 0px;
+}
+.buttons-row-center{
+    justify-content: center;
+    gap: 5px;
+}
+.button-link {
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 500;
+    min-width: 80px;
+    text-align: center;
+    margin-right: 5px;
+}
+.button-link:hover{
+    color: white;
+}
+
+.my-hr{
+    height: 0.5px;
+    background-color: lightgray;
+}
 /****************** question end *******************/
 
 /****************** form start *******************/
-.form {
+.form{
     background-color: white;
     border-radius: 10px;
     box-shadow: 0px 5px 15px 0px lightgray;
@@ -82,21 +122,22 @@ html {
     }
 }
 
-.form .button{
-    text-align: center;
-}
-
 .form-label:after{
     content: ": ";
 }
 
-.button {
+.button, .delete-button {
     padding: 10px;
     border-radius: 5px;
     border: none;
     font-weight: 500;
     min-width: 80px;
 }
+
+.delete-button{
+    margin-top: 60px;
+}
+
 .blue {
     background-color: #6521ff;
     color: white;
@@ -105,9 +146,13 @@ html {
     background-color: white;
     color: #6521ff;
 }
+.red {
+    background-color: #f74545;
+    color: white;
+}
 /****************** form end *******************/
 
-/****************** answer bottom-fixed form start *******************/
+/****************** bottom-fixed answer form start *******************/
 .fixed-form {
     position: fixed;
     bottom: 0px;
@@ -142,7 +187,7 @@ html {
 .answer-button{
     height: min-content;
 }
-/****************** answer bottom-fixed form end *******************/
+/****************** bottom-fixed answer form end *******************/
 
 /****************** master page start *****************/
 #body {
@@ -169,16 +214,87 @@ header {
     flex-direction: row;
 }
 
-#topics-sidebar {
+#topics-sidebar, #topics-popup {
     height: calc(100% - 100px);
     left: 10%;
+    padding: 15px;
+}
+
+#topics-popup{
+    overflow: auto;
+}
+
+.topics-container {
+    overflow: auto;
+    width: inherit;
+    height: calc(100% - 45px);
+    margin-top: 50px;
+    position: relative;
+    left: -20px;
+}
+
+#topics-popup ul{
+    position: relative;
+    top: 45px;
+    left: -6px;
+}
+#topics-sidebar li, #topics-popup li {
+    list-style: none;
+    border-bottom: 1px solid lightgray;
+    width: 100%;
+    text-align: center;
+}
+#topics-popup li:last-of-type{
+    border-bottom: 5px outset transparent;
+}
+#topics-sidebar li:last-of-type {
+    border-bottom: 0;
+}
+.h-container{
+    position: fixed;
+    z-index: 1;
+    height: 58px
+}
+.background {
+    position: absolute;    
+    height: 60px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;    
+    height: 100%;
+}
+#topics-sidebar .background {
+    left: -15px;
+    top: -15px;
+    width: 250px;
+}
+#user-sidebar .background{
+    width: 250px;
+}
+#topics-sidebar h1, #user-sidebar h1 {
+    font-size: 24px;
+    margin-top: 15px;
+}
+.topic-link {
+    text-decoration: none;
+    color: #6521ff;
+    font-weight: 400;
+    font-size: 17px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #user-sidebar {
     height: 50%;
     right: 10%;
+    min-height: 200px;
 }
 
+#user-sidebar ul{
+    margin-top: 55px;
+}
 #user-sidebar, #topics-sidebar {
     width: 250px;
     position: fixed;

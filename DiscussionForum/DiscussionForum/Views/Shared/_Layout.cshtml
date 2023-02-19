@@ -33,10 +33,43 @@
     </header>
 
     <div id="main-container">
+        @{
+            var topics = Enum.GetValues(typeof(DiscussionForum.Data.Enums.Topic));
+        }
+        <div id="topics-popup">
+            <ul>
+                <li>
+                    <a class="topic-link" asp-area="" asp-controller="Question" asp-action="Index">All</a>
+                </li>
+                @foreach (object radiotext in topics)
+                {
+                    <li>
+                        <a class="topic-link" asp-controller="Question" asp-action="Sort" type="radio" asp-route-topic="@radiotext">@radiotext.ToString()</a>
+                    </li>
+                }
+            </ul>
+        </div>
 
-        <div id="topics-popup"></div>
-
-        <div id="topics-sidebar"></div>
+        <div id="topics-sidebar">
+            <div class="h-container">
+                <div class="background blue">
+                    <h1 class="blue">Topics</h1>
+                </div>
+            </div>
+            <div class="topics-container">
+                <ul>
+                    <li>
+                        <a class="topic-link" asp-area="" asp-controller="Question" asp-action="Index">All</a>
+                    </li>
+                    @foreach (object radiotext in topics)
+                    {
+                        <li>
+                            <a class="topic-link" asp-controller="Question" asp-action="Sort" type="radio" asp-route-topic="@radiotext">@radiotext.ToString()</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
 
         <div class="content-container">
             <main role="main" class="pb-3">
@@ -45,72 +78,49 @@
         </div>
 
         <div id="user-sidebar">
+            <div class="h-container">
+                <div class="background blue">
+                    <h1 class="blue">User</h1>
+                </div>
+            </div>
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-                        Home
+                @if (User.Identity.IsAuthenticated)
+                {
+                <li>
+                    <a asp-controller="Question" asp-action="Create" class="nav-link link-dark">
+                        Post Question
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link link-dark">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-dark">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                        Orders
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="Question" asp-action="UserQuestions" class="nav-link link-dark">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                    <a asp-controller="User" asp-action="UserQuestions" class="nav-link link-dark">
                         My Questions
                     </a>
                 </li>
                 <li>
-                    <a asp-controller="Question" asp-action="Create" class="nav-link link-dark">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                        Post Question
+                    <form asp-controller="Logging" asp-action="Logout">
+                        <button class="nav-link link-dark">Sign Out</button>
+                    </form>
+                </li>
+                }
+                else
+                {
+                <li>
+                    <a asp-controller="Logging" asp-action="Login" class="nav-link link-dark">
+                        Sign In
                     </a>
                 </li>
+                <li>
+                    <a asp-controller="Logging" asp-action="Register" class="nav-link link-dark">
+                        Sign Up
+                    </a>
+                </li>
+                }
             </ul>
         </div>
 
         <div id="user-popup">
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-dark">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-                        Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-dark">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                        Orders
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="Question" asp-action="UserQuestions" class="nav-link link-dark">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-                        My Questions
-                    </a>
-                </li>
-                <li>
-                    <a asp-controller="Question" asp-action="Create" class="nav-link link-dark">
-                        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                        Post Question
-                    </a>
-                </li>
+
             </ul>
         </div>
 

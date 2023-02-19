@@ -17,11 +17,8 @@
             <div class="my-hr"></div>
             <div class="buttons-row">
                 <a asp-controller="Question" asp-action="Detail" class="blue button-link" asp-route-id="@Model[i].Id">View Answers</a>
-                @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
-                {
-                    <a asp-controller="Question" asp-action="Edit" class="blue button-link" asp-route-id="@Model[i].Id">Edit</a>
-                    <a asp-controller="Question" asp-action="Delete" class="red button-link" asp-route-id="@Model[i].Id">Delete</a>
-                }
+                <a asp-controller="Question" asp-action="Edit" class="blue button-link" asp-route-id="@Model[i].Id">Edit</a>
+                <a asp-controller="Question" asp-action="Delete" class="red button-link" asp-route-id="@Model[i].Id">Delete</a>
             </div>
         </div>
     }
