@@ -1,16 +1,43 @@
 ﻿@model Question
 
-<div class="question-container">
-    <h2 class="question-title">@Model.Title</h2>
-    @if (Model.Image != null)
+<div class="shadow-div">
+    @if (@Model.AppUser != null)
     {
-        <img class="question-img" src="@Url.Content(Model.Image)" />
+        <div class="user-info-block">
+            @if (Model.AppUser.Image != null)
+            {
+                <img class="user-img" src="@Url.Content(Model.AppUser.Image)" />
+            }
+            else
+            {
+                <img class="user-img" src="~/img/user.png" />
+            }
+            @if (Model.AppUser.UserName != null)
+            {
+                <h1>@Model.AppUser.UserName</h1>
+            }
+        </div>
     }
-    @if (Model.Description != null)
+    else
     {
-        <p class="question-description">@Model.Description</p>
+        <div class="user-info-block">
+            <img class="user-img" src="~/img/user.png" />
+            <h1>Seed</h1>
+        </div>
     }
+    <div class="question-container">
+        <h2 class="question-title">@Model.Title</h2>
+        @if (Model.Description != null)
+        {
+            <p class="question-description">@Model.Description</p>
+        }
+        @if (Model.Image != null)
+        {
+            <img class="question-img" src="@Url.Content(Model.Image)" />
+        }
+    </div>
 </div>
+
 
 @if (Model.Answers != null)
 {
@@ -25,6 +52,7 @@
         <div class="answer-bottom-space"></div>
     }    
 }
+
 @if (User.Identity.IsAuthenticated)
 {
     <div id="partial-block"></div>

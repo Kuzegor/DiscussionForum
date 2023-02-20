@@ -5,7 +5,7 @@ namespace DiscussionForum.Helpers
 {
     public static class ImageHelper
     {
-        //TODO: MORE METHODS IN ImageHelper class
+        //TODO: Add the following methods to ImageHelper class: SaveImage, DeleteImage
         public static bool ImageIsValid(IFormFile imageFile)
         {
             string fileNameLower = imageFile.FileName.ToLower();

@@ -10,7 +10,7 @@ namespace DiscussionForum.Controllers
     public class AnswerController : Controller
     {
         private readonly IAnswerRepository _answerRepository;
-        private readonly IHttpContextAccessor _httpContextAccessor
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public AnswerController(IAnswerRepository answerRepository, IHttpContextAccessor httpContextAccessor)
         {
             _answerRepository = answerRepository;

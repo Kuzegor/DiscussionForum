@@ -1,0 +1,18 @@
+﻿@model List<AppUser>
+
+@foreach (var item in Model)
+{
+	<h1>@item.UserName</h1>
+    <h2>@item.Email</h2>
+    @if (item.Image != null)
+    {
+        <img class="question-img" src="@Url.Content(item.Image)" />
+    }
+    <div class="my-hr"></div>
+    <div class="buttons-row">
+        @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+        {
+            <a asp-controller="User" asp-action="Delete" class="red button-link" asp-route-id="@item.Id">Delete</a>
+        }
+    </div>
+}

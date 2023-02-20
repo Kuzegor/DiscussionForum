@@ -25,12 +25,12 @@ namespace DiscussionForum.Data.Repository
 
         public async Task<IEnumerable<Question>> GetAllAsync()
         {
-            return await _context.Questions.ToListAsync();
+            return await _context.Questions.Include(x => x.AppUser).ToListAsync();
         }
 
         public async Task<Question> GetByIdAsync(int id)
         {
-            return await _context.Questions.Include(x => x.Answers).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Questions.Include(x => x.Answers).Include(x => x.AppUser).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public bool Save()

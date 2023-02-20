@@ -64,6 +64,7 @@ namespace DiscussionForum.Controllers
             }
 
             //saving the uploaded image
+            //TODO: Replace this with ImageHelper method
             if (question.ImageFile != null)
             {
                 if (ImageHelper.ImageIsValid(question.ImageFile))
@@ -90,7 +91,6 @@ namespace DiscussionForum.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             Question question = await _questionRepository.GetByIdAsync(id);
-            TempData["previousImagePath"] = question.Image;
             return View(question);
         }
         [HttpPost]
@@ -102,6 +102,7 @@ namespace DiscussionForum.Controllers
             }
 
             //saving the uploaded image
+            //TODO: Replace this with ImageHelper methods
             if (question.ImageFile != null)
             {
                 if (ImageHelper.ImageIsValid(question.ImageFile))
@@ -112,25 +113,29 @@ namespace DiscussionForum.Controllers
                     using (FileStream fileStream = new FileStream(serverPath, FileMode.Create))
                     {
                         await question.ImageFile.CopyToAsync(fileStream);
-                    }
-                    question.Image = "~/" + folder;
+                    }                    
 
                     //removing the old image
-                    if (TempData["previousImagePath"] != null)
+                    if (question.Image != null)
                     {
-                        string oldImageFolder = TempData["previousImagePath"].ToString().Remove(0, 2);
-                        System.IO.File.Delete(Path.Combine(_webHostEnvironment.WebRootPath, oldImageFolder));
+                        try
+                        {
+                            string oldImageFolder = question.Image.Remove(0, 2);
+                            System.IO.File.Delete(Path.Combine(_webHostEnvironment.WebRootPath, oldImageFolder));
+                        }
+                        catch (DirectoryNotFoundException)
+                        {
+                            //do nothing
+                        }
                     }
+
+                    question.Image = "~/" + folder;
                 }
                 else
                 {
                     ModelState.AddModelError("", "Image is not valid");
                     return View(question);
                 }
-            }
-            else
-            {
-                question.Image = TempData["previousImagePath"]?.ToString();
             }
 
             _questionRepository.Update(question);
@@ -157,6 +162,7 @@ namespace DiscussionForum.Controllers
             {
                 if (question.Image != null)
                 {
+                    //TODO: Replace this with ImageHelper method
                     try
                     {
                         string path = Path.Combine(_webHostEnvironment.WebRootPath, question.Image.ToString().Remove(0, 2));
@@ -164,12 +170,7 @@ namespace DiscussionForum.Controllers
                     }
                     catch (DirectoryNotFoundException)
                     {
-                        _questionRepository.Delete(question);
-                        if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
-                        {
-                            return RedirectToAction("Index");
-                        }
-                        return RedirectToAction("UserQuestions", "User");
+                        //do nothing
                     }
                 }
                 _questionRepository.Delete(question);

@@ -1,0 +1,19 @@
+﻿@using DiscussionForum.Models;
+@model AppUser
+
+<form enctype="multipart/form-data" class="form" method="post" asp-action="EditProfile">
+    <h1 class="blue">Edit Profile</h1>
+    <input type="hidden" name="Id" asp-for="Id"/>
+    <div class="input-block">
+        <label class="form-label" asp-for="UserName"></label>
+        <input required class="form-control" asp-for="UserName" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="input-block">
+        <label class="form-label" asp-for="ImageFile">Image ( jpeg, jpg, png, jfif, or gif )</label>
+        <input id="formFile" class="form-control" asp-for="ImageFile" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+    <input type="hidden" name="Image" asp-for="Image" />
+    <button type="submit" class="blue button">Save</button>
+</form>

@@ -4,21 +4,37 @@
 {
     @for (int i = Model.Count<Question>() - 1; i >= 0; i--)
     {
-        <div class="question-container">
-            <h2 class="question-title">@Model[i].Title</h2>
-            @if (Model[i].Description != null)
-            {
-                <p class="question-description">@Model[i].Description</p>
-            }
-            @if (Model[i].Image != null)
-            {
-                <img class="question-img" src="@Url.Content(Model[i].Image)" />
-            }
-            <div class="my-hr"></div>
-            <div class="buttons-row">
-                <a asp-controller="Question" asp-action="Detail" class="blue button-link" asp-route-id="@Model[i].Id">View Answers</a>
-                <a asp-controller="Question" asp-action="Edit" class="blue button-link" asp-route-id="@Model[i].Id">Edit</a>
-                <a asp-controller="Question" asp-action="Delete" class="red button-link" asp-route-id="@Model[i].Id">Delete</a>
+        <div class="shadow-div">
+            <div class="user-info-block">
+                @if (Model[i].AppUser.Image != null)
+                {
+                    <img class="user-img" src="@Url.Content(Model[i].AppUser.Image)" />
+                }
+                else
+                {
+                    <img class="user-img" src="~/img/user.png" />
+                }
+                @if (Model[i].AppUser.UserName != null)
+                {
+                    <h1>@Model[i].AppUser.UserName</h1>
+                }
+            </div>
+            <div class="question-container">
+                <h2 class="question-title">@Model[i].Title</h2>
+                @if (Model[i].Description != null)
+                {
+                    <p class="question-description">@Model[i].Description</p>
+                }
+                @if (Model[i].Image != null)
+                {
+                    <img class="question-img" src="@Url.Content(Model[i].Image)" />
+                }
+                <div class="my-hr"></div>
+                <div class="buttons-row">
+                    <a asp-controller="Question" asp-action="Detail" class="blue button-link" asp-route-id="@Model[i].Id">View Answers</a>
+                    <a asp-controller="Question" asp-action="Edit" class="blue button-link" asp-route-id="@Model[i].Id">Edit</a>
+                    <a asp-controller="Question" asp-action="Delete" class="red button-link" asp-route-id="@Model[i].Id">Delete</a>
+                </div>
             </div>
         </div>
     }

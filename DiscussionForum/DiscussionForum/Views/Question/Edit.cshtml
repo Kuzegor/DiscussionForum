@@ -3,6 +3,7 @@
 
 <form enctype="multipart/form-data" class="form" method="post" asp-action="Edit">
     <h1 class="blue">Edit Question</h1>
+    <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId" />
     <div class="input-block">
         <label class="form-label" asp-for="Title"></label>
         <input required class="form-control" asp-for="Title" />
@@ -25,5 +26,6 @@
         </select>
         <span asp-validation-for="Topic" class="text-danger"></span>
     </div>
+    <input type="hidden" name="Image" asp-for="Image" />
     <button type="submit" class="blue button">Save</button>
 </form>
