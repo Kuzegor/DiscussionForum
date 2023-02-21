@@ -28,7 +28,7 @@ namespace DiscussionForum.Data.Repository
         public async Task<IEnumerable<Answer>> GetAnswersByUserAsync()
         {
             var currentUserId = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return await _context.Answers.Where(x => x.AppUserId == currentUserId.ToString()).ToListAsync();
+            return await _context.Answers.Include(x => x.AppUser).Where(x => x.AppUserId == currentUserId.ToString()).ToListAsync();
         }
 
         public async Task<IEnumerable<Question>> GetQuestionsByUserAsync()

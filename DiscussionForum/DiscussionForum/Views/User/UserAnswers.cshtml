@@ -1,0 +1,23 @@
+﻿@model List<Answer>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <div class="shadow-div">
+            <div class="user-info-block answer-margin">
+                <img class="user-img" src="@Url.Content(item.AppUser.Image)" />
+                <h1>@item.AppUser.UserName</h1>
+            </div>
+            <div class="answer-container">
+                <p>@item.Description</p>
+                <div class="my-hr"></div>
+                <div class="answer-buttons-row">
+                    <a asp-controller="Question" asp-action="Detail" class="blue button-link" asp-route-id="@item.QuestionId">View Question</a>
+                    <a asp-controller="Answer" asp-action="Edit" class="blue button-link" asp-route-id="@item.Id">Edit</a>
+                    <a asp-controller="Answer" asp-action="Delete" class="red button-link" asp-route-id="@item.Id">Delete</a>
+                </div>
+            </div>            
+        </div>        
+    }
+}

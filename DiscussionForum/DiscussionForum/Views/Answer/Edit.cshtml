@@ -1,0 +1,13 @@
+﻿@model Answer
+
+<form enctype="multipart/form-data" class="form" method="post" asp-action="Edit">
+    <h1 class="blue">Edit Answer</h1>
+    <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId" />
+    <input type="hidden" name="QuestionId" asp-for="QuestionId"/>
+    <div class="input-block">
+        <label class="form-label" asp-for="Description"></label>
+        <textarea class="form-control" rows="8" asp-for="Description"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <button type="submit" class="blue button">Save</button>
+</form>

@@ -83,12 +83,6 @@
                     <h1 class="blue">User</h1>
                 </div>
             </div>
-@*            @if (User.Identity.IsAuthenticated)
-            {
-                <div id="username-container">
-                 
-                </div>
-            }*@
             <div class="user-container">
                 <ul class="nav nav-pills flex-column mb-auto">
                     @if (User.Identity.IsAuthenticated)
@@ -106,6 +100,11 @@
                         <li>
                             <a asp-controller="User" asp-action="UserQuestions" class="user-link">
                                 My Questions
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="User" asp-action="UserAnswers" class="user-link">
+                                My Answers
                             </a>
                         </li>
                         <li>
@@ -132,9 +131,51 @@
         </div>
 
         <div id="user-popup">
-            <ul class="nav nav-pills flex-column mb-auto">
-
-            </ul>
+            <div class="user-container">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a asp-controller="User" asp-action="EditProfile" class="user-link">
+                                Edit Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Question" asp-action="Create" class="user-link">
+                                Post Question
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="User" asp-action="UserQuestions" class="user-link">
+                                My Questions
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="User" asp-action="UserAnswers" class="user-link">
+                                My Answers
+                            </a>
+                        </li>
+                        <li>
+                            <form asp-controller="Logging" asp-action="Logout">
+                                <button class="logout-button">Sign Out</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a asp-controller="Logging" asp-action="Login" class="user-link">
+                                Sign In
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Logging" asp-action="Register" class="user-link">
+                                Sign Up
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
         </div>
 
         <div onclick="hideAllPopups()" id="blank-canvas"></div>

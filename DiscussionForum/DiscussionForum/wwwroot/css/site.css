@@ -40,10 +40,13 @@ html {
     border-radius: 10px;
     box-shadow: 0px 5px 15px 0px lightgray;
     padding: 15px;
-    margin-top: 10px;
 }
 .answer-bottom-space{
     height: 60px;
+}
+
+.answer-margin{
+    margin-top: 10px;
 }
 
 .question-img {
@@ -102,7 +105,7 @@ html {
     color: black;
 }
 
-.buttons-row, .buttons-row-center{
+.buttons-row, .buttons-row-center, .answer-buttons-row{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -112,6 +115,10 @@ html {
     justify-content: center;
     gap: 5px;
 }
+.answer-buttons-row{
+    margin-top: 10px;
+}
+
 .button-link {
     text-decoration: none;
     padding: 10px;
@@ -268,6 +275,7 @@ header {
 
 #topics-popup{
     overflow: auto;
+    padding-top: 20px;
 }
 
 .topics-container {
@@ -464,6 +472,7 @@ header {
 
 #user-popup {
     right: 0px;
+    padding: 35px 10px 10px 10px;
 }
 
 #topics-popup{

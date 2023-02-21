@@ -1,4 +1,5 @@
-﻿@model Question
+﻿@using System.Security.Claims;
+@model Question
 
 <div class="shadow-div">
     @if (@Model.AppUser != null)
@@ -38,29 +39,19 @@
     </div>
 </div>
 
-
-@if (Model.Answers != null)
-{
-    foreach (var item in Model.Answers)
-    {
-        <div class="answer-container">
-            <p>@item.Description</p>
-        </div>
-    }
-    @if (User.Identity.IsAuthenticated)
-    {
-        <div class="answer-bottom-space"></div>
-    }    
-}
+<div id="partial-block-answers"></div>
 
 @if (User.Identity.IsAuthenticated)
 {
-    <div id="partial-block"></div>
+    <div id="partial-block-form"></div>
 }
 
 @section Scripts{
     <script>
-        $('#partial-block').load("/Answer/Create")
+        $("#partial-block-answers").load("/Answer/QuestionAnswers")
+    </script>
+    <script>
+        $('#partial-block-form').load("/Answer/Create")
     </script>
 }
 

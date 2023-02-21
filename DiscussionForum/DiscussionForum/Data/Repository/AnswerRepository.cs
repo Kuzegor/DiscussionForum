@@ -12,6 +12,11 @@ namespace DiscussionForum.Data.Repository
             _context = context;
         }
 
+        public async Task<IEnumerable<Answer>> GetByQuestionId(int id)
+        {
+            return await _context.Answers.Include(x => x.Question).Include(x => x.AppUser).Where(x => x.QuestionId == id).ToListAsync();
+        }
+
         public bool Add(Answer answer)
         {
             _context.Add(answer);
@@ -34,6 +39,11 @@ namespace DiscussionForum.Data.Repository
         {
             _context.Update(answer);
             return Save();
+        }
+
+        public async Task<Answer> GetByIdAsync(int id)
+        {
+            return await _context.Answers.FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }
