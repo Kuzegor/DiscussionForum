@@ -70,6 +70,7 @@ html {
     top: 0px;
     color: white;
     height: 59px;
+    overflow: clip;
 }
 
 .user-info-block h1{

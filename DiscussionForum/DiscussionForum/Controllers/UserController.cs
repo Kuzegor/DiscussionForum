@@ -105,7 +105,7 @@ namespace DiscussionForum.Controllers
             userNoTracking.Image = user.Image;
 
             _userRepository.Update(userNoTracking);
-            return RedirectToAction("Detail", new { id = user.Id });
+            return RedirectToAction("Index", "Question");
         }
     }
 }
