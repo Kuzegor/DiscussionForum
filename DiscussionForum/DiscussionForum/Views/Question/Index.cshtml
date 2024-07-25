@@ -10,11 +10,11 @@
                 <div class="user-info-block">
                     @if (Model[i].AppUser.Image != null)
                     {
-                        <img class="user-img" src="@Url.Content(Model[i].AppUser.Image)" />
+                        <img class="user-img" src="@Url.Content(Model[i].AppUser.Image)" loading="lazy"/>
                     }
                     else
                     {
-                        <img class="user-img" src="~/img/user.png" />
+                        <img class="user-img" src="~/img/user.png" loading="lazy"/>
                     }
                     @if (Model[i].AppUser.UserName != null)
                     {
@@ -25,7 +25,7 @@
             else
             {
                 <div class="user-info-block">
-                   <img class="user-img" src="~/img/user.png" />
+                   <img class="user-img" src="~/img/user.png" loading="lazy"/>
                    <h1>Seed</h1>
                 </div>
             }
@@ -37,7 +37,7 @@
                 }
                 @if (Model[i].Image != null)
                 {
-                    <img class="question-img" src="@Url.Content(Model[i].Image)" />
+                    <img class="question-img" src="@Url.Content(Model[i].Image)" loading="lazy"/>
                 }
                 <div class="my-hr"></div>
                 <div class="buttons-row">
