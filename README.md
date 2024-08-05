@@ -9,7 +9,7 @@
 
 •	Загрузка изображений
 
-•	Использование стилей Bootstrap и анимаций JavaScript
+•	Использование стилей Bootstrap и анимаций JavaScrip
 
 ![screenshot1](https://user-images.githubusercontent.com/99031814/220837314-c028ebdb-e616-437b-926b-4a5e64b3d1af.png)
 ![screenshot2](https://user-images.githubusercontent.com/99031814/220837329-93170732-dd60-4a20-aea6-0d76a5d4b516.png)
